@@ -18,12 +18,12 @@ $white: #bfffff;
   padding: 1em;
   color: $white;
 
-  animation-name: buttonBlur;
+  animation-name: buttonBlurQuery;
   animation-duration: 0.4s;
   animation-fill-mode: forwards;
 
   &:hover {
-    animation-name: buttonFocus;
+    animation-name: buttonFocusQuery;
     animation-duration: 1s;
     animation-fill-mode: forwards;
   }
@@ -33,12 +33,12 @@ $white: #bfffff;
   padding: 1em;
   color: $white;
 
-  animation-name: buttonBlur;
+  animation-name: buttonBlurQuery;
   animation-duration: 0.4s;
   animation-fill-mode: forwards;
 
   &:hover {
-    animation-name: buttonFocus;
+    animation-name: buttonFocusQuery;
     animation-duration: 1s;
     animation-fill-mode: forwards;
   }
@@ -67,12 +67,12 @@ $white: #bfffff;
   color: $white;
   font-size: 1.3em;
 
-  animation-name: buttonBlur;
+  animation-name: buttonBlurQuery;
   animation-duration: 0.4s;
   animation-fill-mode: forwards;
 
   &:hover {
-    animation-name: buttonFocus;
+    animation-name: buttonFocusQuery;
     animation-duration: 1s;
     animation-fill-mode: forwards;
   }
@@ -122,7 +122,7 @@ $white: #bfffff;
     height: auto;
   }
 }
-@keyframes buttonFocus {
+@keyframes buttonFocusQuery {
   from {
     background: $cyan;
   }
@@ -130,7 +130,7 @@ $white: #bfffff;
     background: $deepcyan;
   }
 }
-@keyframes buttonBlur {
+@keyframes buttonBlurQuery {
   from {
     background: $deepcyan;
   }
