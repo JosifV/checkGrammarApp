@@ -1,0 +1,29 @@
+{
+  "name": "cyrilic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "10.1.0",
+    "npm": "5.6.0"
+  },
+  "scripts": {
+    "test": "nodemon --exec mocha -R min --timeout 10000",
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "mocha": "^6.0.2",
+    "mongoose": "^5.4.20",
+    "nodemon": "^1.18.10"
+  }
+}

@@ -1,0 +1,151 @@
+:root {
+  --logInBackground: linear-gradient(to bottom left, #5bb484, #71aa8c);
+  --logInBackgroundHover: #5bb484;
+}
+$mainBackground: rgba(255, 255, 255, 0);
+$white: white;
+
+.divRoot {
+  height: 100vh;
+  max-height: 100%;
+  background: $mainBackground;
+}
+.divSeparator {
+  padding: 2.5em 0;
+}
+.divLoginMain {
+  width: 40%;
+  margin: 0 30%;
+  padding: 1em;
+  letter-spacing: 1.2px;
+  border-radius: 20px;
+  background: var(--logInBackground);
+}
+.divLogIn {
+  label,
+  input {
+    width: 100%;
+    padding: 1em;
+  }
+}
+.divLogIn {
+  label {
+    text-align: center;
+    color: $white;
+    font-size: 1.6em;
+    font-weight: 600;
+  }
+}
+.divLogIn {
+  input {
+    border-radius: 10px;
+    letter-spacing: 1.2px;
+    color: $white;
+    border: 2px solid $white;
+    background: var(--logInBackground);
+    font-size: 1.3em;
+    font-weight: 600;
+  }
+}
+.divLogIn {
+  input:focus {
+    animation-name: inputFocus;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+}
+.divLogIn {
+  input:not(:focus) {
+    animation-name: inputBlur;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+  }
+}
+@keyframes inputFocus {
+  from {
+    border: 2px solid $white;
+    background: var(--logInBackground);
+  }
+  to {
+    color: var(--logInBackgroundHover);
+    background: $white;
+  }
+}
+@keyframes inputBlur {
+  from {
+    color: var(--logInBackgroundHover);
+    background: $white;
+  }
+  to {
+    border: 2px solid $white;
+    background: var(--logInBackground);
+  }
+}
+.buttonLogIn {
+  width: 100%;
+  padding: 0.8em 0;
+  margin: 0.5em 0;
+  font-size: 1.5em;
+  font-weight: 600;
+  color: $white;
+  border: 2px solid $white;
+  background: var(--logInBackground);
+  border-radius: 10px;
+}
+.buttonLogIn:hover {
+  animation-name: buttonFocus;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+.buttonLogIn:not(:hover) {
+  animation-name: buttonBlur;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes buttonFocus {
+  from {
+    border: 2px solid $white;
+    background: var(--logInBackground);
+  }
+  to {
+    color: var(--logInBackgroundHover);
+    background: $white;
+  }
+}
+@keyframes buttonBlur {
+  from {
+    color: var(--logInBackgroundHover);
+    background: $white;
+  }
+  to {
+    border: 2px solid $white;
+    background: var(--logInBackground);
+  }
+}
+.h3Header {
+  text-align: center;
+  padding: 0.3em 0 0.3em 0;
+  font-weight: 650;
+  color: $white;
+}
+.h5Error {
+  text-align: center;
+  padding: 1em 0 0.7em 0;
+  color: $white;
+}
+@media only screen and (max-width: 1000px) {
+  .divLoginMain {
+    width: 70%;
+    margin-left: 15%;
+  }
+  .divSeparator {
+    padding: 0.5em 0;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .divLoginMain {
+    width: 80%;
+    margin-left: 10%;
+  }
+}

@@ -1,0 +1,103 @@
+$cyan: #007272;
+$deepcyan: #003636;
+$white: #bfffff;
+$portfolio: #009933;
+$facebook: #3b5998;
+$github: #6e5494;
+$linkedin: #007bb6;
+
+.footer {
+  background-color: $deepcyan;
+  padding: 1em 0;
+  font-size: 1em;
+  color: $white;
+  margin-top: 2em;
+
+  display: grid;
+  grid-template-columns: auto auto;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.divSigniture {
+  padding: 2em;
+}
+.divLinks {
+  padding: 2em;
+}
+.footer a {
+  color: $white;
+  font-weight: 600;
+}
+.footer a:hover {
+  color: $cyan;
+  text-decoration: none;
+}
+.footer .ulSocial {
+  text-align: right;
+}
+.footer .ulSocial a {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 6px;
+  margin-right: 0;
+  border-radius: 100%;
+  background-color: $cyan;
+}
+.pMadeBy {
+  margin: 0 0 0 1em;
+}
+.ulSocial {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+.ulSocial li {
+  display: inline-block;
+  margin-bottom: 4px;
+}
+.ulSocial a {
+  color: $white;
+  font-size: 16px;
+  display: inline-block;
+  line-height: 44px;
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  margin-right: 8px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+.ulSocial a:active,
+.ulSocial a:focus,
+.ulSocial a:hover {
+  color: $white;
+  background-color: #29aafe;
+}
+.ulSocial a.facebook:hover {
+  background-color: $facebook;
+}
+.ulSocial a.twitter:hover {
+  background-color: $portfolio;
+}
+.ulSocial a.linkedin:hover {
+  background-color: $linkedin;
+}
+.ulSocial a.dribbble:hover {
+  background-color: $github;
+}
+@media only screen and (max-width: 624px) {
+  .footer {
+    grid-template-columns: auto;
+  }
+  .divSigniture {
+    text-align: center;
+    padding: 0.5em;
+  }
+  .footer .ulSocial {
+    text-align: center;
+  }
+}

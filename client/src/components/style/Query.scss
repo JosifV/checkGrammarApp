@@ -1,0 +1,112 @@
+:root {
+  --statusBackground: #a5eed6;
+}
+$cyan: #007272;
+$deepcyan: #003636;
+$white: #bfffff;
+
+.buttonGroup {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.buttonCheckQuery {
+  border-radius: 0 0 0 10px;
+  border: none;
+  padding: 1em;
+  background: $cyan;
+  color: $white;
+
+  &:hover {
+    background: $deepcyan;
+    color: $white;
+  }
+}
+.buttonSignOut {
+  border: none;
+  padding: 1em;
+  background: $cyan;
+  color: $white;
+
+  &:hover {
+    background: $deepcyan;
+    color: $white;
+  }
+}
+.divSearch {
+  display: grid;
+  grid-template-columns: auto;
+  padding-top: 3.5em;
+}
+.textArea {
+  width: 50%;
+  margin-left: 25%;
+  resize: none;
+  border: none;
+  border-radius: 10px 10px 0 0;
+  padding: 0.5em;
+  letter-spacing: 1.2px;
+}
+.buttonSearch {
+  width: 50%;
+  margin-left: 25%;
+
+  border: none;
+  border-radius: 0 0 10px 10px;
+  padding: 1em;
+  background: $cyan;
+  color: $white;
+  font-size: 1.3em;
+
+  &:hover {
+    background: $deepcyan;
+    color: $white;
+  }
+}
+.h5Status {
+  width: 20%;
+  height: 3em;
+  margin-left: 40%;
+  margin-top: 2em;
+  text-align: center;
+  padding: 0.8em;
+  border-radius: 10px;
+  color: $white;
+  font-size: 1.4em;
+  background: var(--statusBackground);
+}
+.divHistoryCheck {
+  display: block;
+  p {
+    text-align: center;
+    padding: 0.3em;
+    font-size: 1.2em;
+  }
+}
+@media only screen and (max-width: 869px) {
+  .buttonGroup {
+    width: 100%;
+    grid-template-columns: auto;
+  }
+  .buttonCheckQuery {
+    border-radius: 0;
+  }
+  .divSearch {
+    padding-top: 8.5em;
+  }
+  textarea {
+    height: 5em;
+  }
+  .h5Status {
+    height: auto;
+    width: 50%;
+    margin-left: 25%;
+  }
+}
+@media only screen and (max-width: 1255px) {
+  .h5Status {
+    height: auto;
+  }
+}
