@@ -112,7 +112,7 @@ class Query extends Component {
         })
         .catch(err => {
           console.log("Error is ::: " + err);
-          if (err == "TypeError: resp.data.matches[0] is undefined") {
+          if (err == "TypeError: resp.data.matches[0] is undefined"|| err == "TypeError: e.data.matches[0] is undefined") {
             this.errorFalseHandler();
             this.setState({
               checkStatus: "All fine"
