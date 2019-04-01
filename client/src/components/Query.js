@@ -14,17 +14,20 @@ class Query extends Component {
     modal: false,
     backdrop: true
   };
+  // toggle da history modal
   toggle = () => {
     const toggleHelper = !this.state.modal;
     this.setState({
       modal: toggleHelper
     });
   };
+  // dodeljivanje teksta kog saljemo kao upit Api-u
   searchItemHandler = event => {
     this.setState({
       checkText: event.target.value
     });
   };
+  // slanje trazenog teksta u niz na databazi, a to je niz koji sadrzi sve tekstove koje je korisnik uneo
   postQueryHandler = () => {
     const findTokenHandler = name => {
       const match = document.cookie.match(
@@ -47,6 +50,7 @@ class Query extends Component {
         console.log(err);
       });
   };
+  // ovako trazimo od servera da nam posalje history niz proslih pretraga
   getQueryHistoryHandler = () => {
     const findTokenHandler = name => {
       const match = document.cookie.match(
@@ -73,19 +77,24 @@ class Query extends Component {
         console.log(err);
       });
   };
+  // da se izlogujes
   signOutHandler = () => {
     document.cookie = "token=; path=/";
     window.location.reload();
   };
+  // ako gramatika ima neku gresku, ili ako je tekst prazan
   errorTrueHandler = () => {
     let root = document.documentElement;
+    // izmeni boju u crvenu
     root.style.setProperty("--statusBackground", "#ff633c");
   };
+  // ako je gramatika teksta dobra
   errorFalseHandler = () => {
     let root = document.documentElement;
+    // izmeni boju u plavu
     root.style.setProperty("--statusBackground", "#3ca7f8");
   };
-
+  // upit ka API-u
   apiSearchHandler = () => {
     this.setState({
       checkStatus: <Spinner type="grow" color="light" />
@@ -112,7 +121,10 @@ class Query extends Component {
         })
         .catch(err => {
           console.log("Error is ::: " + err);
-          if (err == "TypeError: resp.data.matches[0] is undefined"|| err == "TypeError: e.data.matches[0] is undefined") {
+          if (
+            err == "TypeError: resp.data.matches[0] is undefined" ||
+            err == "TypeError: e.data.matches[0] is undefined"
+          ) {
             this.errorFalseHandler();
             this.setState({
               checkStatus: "All fine"
