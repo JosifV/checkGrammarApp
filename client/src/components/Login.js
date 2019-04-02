@@ -10,19 +10,19 @@ class Login extends Component {
     userName: "",
     password: ""
   };
-  // upisi korisnicko ime
+  // write username
   userNameHandler = event => {
     this.setState({
       userName: event.target.value
     });
   };
-  // upisi lozinku
+  // write password
   passwordHandler = event => {
     this.setState({
       password: event.target.value
     });
   };
-  // ako je log in dobro prosao izmeni boju u plavu
+  // if login / signup went good turn the form background to blue
   successHandler = () => {
     let root = document.documentElement;
     root.style.setProperty(
@@ -31,7 +31,7 @@ class Login extends Component {
     );
     root.style.setProperty("--logInBackgroundHover", "#5799bd");
   };
-  // ako nije izmeni boju u crvenu
+  // if there were some problem turn the form background to red
   errorHandler = () => {
     let root = document.documentElement;
     root.style.setProperty(
@@ -40,7 +40,7 @@ class Login extends Component {
     );
     root.style.setProperty("--logInBackgroundHover", "#ff552d");
   };
-  // logovanje, provera da li je unos validan, namestanje kolacica, upit ka databazi, i sl
+  // login, check if entry is valid, setting the cookie, query to database, ect
   signInHandler = () => {
     if (this.state.password === "" || this.state.userName === "") {
       this.setState({

@@ -14,20 +14,20 @@ class Query extends Component {
     modal: false,
     backdrop: true
   };
-  // toggle da history modal
+  // toggle history modal
   toggle = () => {
     const toggleHelper = !this.state.modal;
     this.setState({
       modal: toggleHelper
     });
   };
-  // dodeljivanje teksta kog saljemo kao upit Api-u
+  // write query that will be sent to API
   searchItemHandler = event => {
     this.setState({
       checkText: event.target.value
     });
   };
-  // slanje trazenog teksta u niz na databazi, a to je niz koji sadrzi sve tekstove koje je korisnik uneo
+  // sent the text query to database
   postQueryHandler = () => {
     const findTokenHandler = name => {
       const match = document.cookie.match(
@@ -36,7 +36,6 @@ class Query extends Component {
       if (match) {
         return match[2];
       } else {
-        console.log("--something went wrong COOKIE---");
         return false;
       }
     };
@@ -50,7 +49,7 @@ class Query extends Component {
         console.log(err);
       });
   };
-  // ovako trazimo od servera da nam posalje history niz proslih pretraga
+  // send request to server for array of query history of this user
   getQueryHistoryHandler = () => {
     const findTokenHandler = name => {
       const match = document.cookie.match(
@@ -77,35 +76,39 @@ class Query extends Component {
         console.log(err);
       });
   };
-  // da se izlogujes
+  // signout
   signOutHandler = () => {
     document.cookie = "token=; path=/";
     window.location.reload();
   };
-  // ako gramatika ima neku gresku, ili ako je tekst prazan
+  // if word check, or text is empty...
   errorTrueHandler = () => {
     let root = document.documentElement;
-    // izmeni boju u crvenu
+    // turn the background to red
     root.style.setProperty("--statusBackground", "#ff633c");
   };
-  // ako je gramatika teksta dobra
+  // if word check went well
   errorFalseHandler = () => {
     let root = document.documentElement;
-    // izmeni boju u plavu
+    // turn the background to blue
     root.style.setProperty("--statusBackground", "#3ca7f8");
   };
-  // upit ka API-u
+  // request to API
   apiSearchHandler = () => {
+    // show spinner while we wait
     this.setState({
       checkStatus: <Spinner type="grow" color="light" />
     });
+    // if text is empty show error and dont send the request
     if (this.state.checkText === "") {
       this.setState({
         checkStatus: "Please type some text"
       });
       this.errorTrueHandler();
       return;
-    } else {
+    }
+    // if text is not empty send the request
+    else {
       axios
         .post(
           "https://languagetool.org/api/v2/check?text=" +
@@ -113,6 +116,7 @@ class Query extends Component {
             "&language=en-US"
         )
         .then(resp => {
+          // if text have some grammar error show it
           console.log(resp);
           this.errorTrueHandler();
           this.setState({
@@ -120,6 +124,7 @@ class Query extends Component {
           });
         })
         .catch(err => {
+          // if text is corect show that all is fine
           console.log("Error is ::: " + err);
           if (
             err == "TypeError: resp.data.matches[0] is undefined" ||

@@ -1,7 +1,7 @@
 import React from "react";
 import "./style/Footer.scss";
 
-// obicna futer komponenta
+// ordinary footer component
 const Footer = () => {
   return (
     <footer className="footer">
