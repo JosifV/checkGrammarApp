@@ -3,35 +3,35 @@ import Login from "./components/Login";
 import Query from "./components/Query";
 
 class App extends Component {
-  // u stateu ima samo jedna varijabla koju cemo po potrebi menjati i renderovati kao root komponentu
+  // only one variable in state, and this is the variable we will reasign and render
   state = {
     componentToRender: <div />
   };
-  // kad god komponenta treba da se ucita...
+  // when this component will mount...
   componentWillMount() {
-    // pronadji login token u kolacicima
+    // find login token inside cookies
     const findTokenHandler = name => {
       const match = document.cookie.match(
         new RegExp("(^| )" + name + "=([^;]+)")
       );
       if (match) {
-        // ako ima tokena vrati ga
+        // if token exist return it
         return match[2];
       } else {
         console.log("--something went wrong COOKIE---");
-        // ako nema tokena vrati false
+        // if he does not exist return false
         return false;
       }
     };
-    // i zatim ga dodeli varijabli
+    // and asign returned value to this variable
     const tokenCookie = findTokenHandler("token");
-    // ako postoji token u kolacicima izmeni root komponentu u Query - jer to znaci da je korisnik ulogovan
+    // if token exist inside cookies reasign componentToRender value with Query component - beause user is loged in
     if (tokenCookie) {
       this.setState({
         componentToRender: <Query />
       });
     }
-    // ako nema tokena u kolacicima znaci da niko nije ulogovan i zato izmeni root komponentu u Login
+    // if token does not exist in cookies reasign componentToRender value with Login component - beause user is not loged in
     else {
       this.setState({
         componentToRender: <Login />
@@ -39,7 +39,7 @@ class App extends Component {
     }
   }
   render() {
-    // i na kraju samo renderuj root komponentu, koju god vrednost ona imala
+    // and just render this variable whatever the value it have
     return <div>{this.state.componentToRender}</div>;
   }
 }
