@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
+// Database schema of every user
 const UserData = new Schema({
   queries: [String],
   username: String,

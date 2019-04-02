@@ -1,5 +1,5 @@
 const controls = require("./controls");
-
+// callback functions are imported from controls.js
 module.exports = app => {
   app.post("/login/:username/:password", controls.login);
 

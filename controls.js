@@ -2,34 +2,34 @@ const UserSchema = require("./models");
 
 module.exports = {
   login: (req, res, next) => {
-    // login podaci preuzeti iz backend urla
+    // login data from client request
     const username = req.params.username;
     const password = req.params.password;
 
-    // prvo pronadji jednog korisnika sa unetim username-om
+    // find user with this username
     UserSchema.findOne({ username: username })
-      // posalji ga u client browser
+      // send it to client browser
       .then(user => {
-        // ako ima tog korisnika onda...
+        // if that user exists then...
         if (user) {
-          // ... proveri da li se poklapaju lozinke
+          // ... check if password matches
           if (user.password === password) {
-            // ako se poklapaju uloguj ga i posalji njegov mongoDB id kao tokenom
+            // if they do log him in and send his mongo id as token
             res.send(["SignIn", user._id]);
           } else {
-            // u suprotnom izbaci da je lozinka pogresna
+            // if they do not match print error message
             res.send("Wrong password");
           }
         }
-        // ako ne postoji korisnik sa tim username-om...
+        // if there are no user by that username...
         else {
-          // ... onda ga napravi sa podacima iz backend urla...
+          // ... create one...
           UserSchema.create({
             queries: [],
             username: username,
             password: password
           }).then(user => {
-            // ... i uloguj ga sa njegovim mongoDB id kao tokenom
+            // ... and log him in with his mongo id as token
             res.send(["SignUp", user._id]);
           });
         }
@@ -37,49 +37,49 @@ module.exports = {
       .catch(next);
   },
   query: (req, res, next) => {
-    // query podaci preuzeti iz backend urla
+    // query data from client request
     const id = req.params.id;
     const newQuery = req.params.newQuery;
 
-    // pronadji korisnika koji je trenutno ulogovan i koji je poslao ovaj zahtev
+    // find the user that is currenty loged in
     UserSchema.findById({ _id: id })
       .then(user => {
-        // kopija niza postojecih upita ovog korisnika
+        // copy the array of queries
         let userQueriesArray = [...user.queries];
-        // da li u tom nizu vec postoji poslati upit?
+        // does this query already exists in the array?
         const newQueryPresent = userQueriesArray.includes(newQuery);
-        // ako ne postoji onda ga smesti u niz ...
+        // if no put him in the array ...
         if (!newQueryPresent) {
           userQueriesArray.push(newQuery);
-          // i updatuj postojeci niz na databazi ovog korisnika
+          // and update the query array on database
           UserSchema.findOneAndUpdate(
             { _id: id },
             { queries: userQueriesArray }
           )
             .then(user => {
-              // posalji updatovani niz na client browser
+              // sent updated query array to client
               res.send([user.queries, newQuery]);
             })
             .catch(err => {
-              // ako slucajno dodje do greske posalji error poruku
+              // in unlikely case of error :)
               res.send(
                 `You should not see this, but there it is... Error message: ${err}`
               );
             });
         } else {
-          // i na kraju, ako je korisnik vec uneo ovaj upit nemoj nista da radis, samo posalji da je taj upit vec unet
+          // if query already exists in array send just this message
           res.send("Query already exist");
         }
       })
       .catch(next);
   },
   querylist: (req, res, next) => {
-    // query podaci preuzeti iz backend urla
+    // query data from client request
     const id = req.params.id;
-    // pronadji korisnika sa ulogovanim id-om
+    // find the user with this id
     UserSchema.findById({ _id: id })
       .then(user => {
-        // i posalji ga u client browser da mu uzmemo queri niz
+        // and send him to client for query array
         res.send(user);
       })
       .catch(next);
